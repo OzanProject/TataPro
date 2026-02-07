@@ -20,12 +20,13 @@ class RoleSeeder extends Seeder
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         // Create Roles
-        $adminRole = Role::create(['name' => 'admin']);
-        $kepsekRole = Role::create(['name' => 'kepalasekolah']);
-        $operatorRole = Role::create(['name' => 'operator']);
+        // Create Roles (Use firstOrCreate to avoid duplication if PermissionSeeder ran first)
+        $adminRole = Role::firstOrCreate(['name' => 'admin']);
+        $kepsekRole = Role::firstOrCreate(['name' => 'kepalasekolah']);
+        $operatorRole = Role::firstOrCreate(['name' => 'operator']);
 
         // Create Default Users with Roles
-        
+
         // 1. Admin TU
         $admin = User::firstOrCreate([
             'email' => 'ardiansyahdzan@gmail.com'
