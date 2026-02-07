@@ -12,10 +12,10 @@ return new class extends Migration {
     {
         Schema::table('students', function (Blueprint $table) {
             // Identity
-            $table->string('nisn')->nullable()->after('nis');
+            // nisn & gender already added in 2026_02_05_011703
             $table->string('place_of_birth')->nullable()->after('name');
             $table->date('date_of_birth')->nullable()->after('place_of_birth');
-            $table->enum('gender', ['L', 'P'])->nullable()->after('date_of_birth');
+            // $table->enum('gender', ['L', 'P'])->nullable()->after('date_of_birth'); // Duplicate
             $table->string('religion')->nullable()->after('gender');
 
             // Family
@@ -40,10 +40,10 @@ return new class extends Migration {
     {
         Schema::table('students', function (Blueprint $table) {
             $table->dropColumn([
-                'nisn',
+                // 'nisn', // duplicate
                 'place_of_birth',
                 'date_of_birth',
-                'gender',
+                // 'gender', // duplicate
                 'religion',
                 'father_name',
                 'mother_name',
