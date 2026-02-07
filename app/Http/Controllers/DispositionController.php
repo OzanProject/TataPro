@@ -13,19 +13,19 @@ class DispositionController extends Controller
     public function index()
     {
         $userId = Auth::id();
-        
+
         // Inbox: Disposisi yang ditujukan ke user ini
         $inbox = Disposition::with(['sender', 'incoming_mail.category'])
-                    ->where('to_user_id', $userId)
-                    ->latest()
-                    ->get();
+            ->where('to_user_id', $userId)
+            ->latest()
+            ->paginate(10, ['*'], 'inbox_page');
 
         // Outbox: Disposisi yang dibuat oleh user ini
         $outbox = Disposition::with(['receiver', 'incoming_mail.category'])
-                    ->where('from_user_id', $userId)
-                    ->latest()
-                    ->get();
-                    
+            ->where('from_user_id', $userId)
+            ->latest()
+            ->paginate(10, ['*'], 'outbox_page');
+
         return view('backend.correspondence.disposition.index', compact('inbox', 'outbox'));
     }
 

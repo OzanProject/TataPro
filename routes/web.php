@@ -22,9 +22,12 @@ Route::controller(AuthController::class)->group(function () {
 // Protected Routes
 Route::middleware(['auth'])->group(function () {
 
-    // Unified Dashboard Route (Accessible by all authenticated users)
     Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
     Route::get('/guide', [\App\Http\Controllers\DashboardController::class, 'guide'])->name('guide');
+
+    // Profile Routes
+    Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
 
     // Redirect / to /dashboard
     Route::get('/', function () {

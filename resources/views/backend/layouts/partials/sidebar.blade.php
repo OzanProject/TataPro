@@ -24,8 +24,13 @@
         <!-- User Panel -->
         <div class="user-card mt-3 pb-3 mb-3 d-flex align-items-center border-bottom">
             <div class="image pr-2">
-                <img src="{{ asset('adminlte3/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-1" alt="User"
-                    style="width: 35px; height: 35px; object-fit: cover;">
+                @if(Auth::user()->profile_photo_path)
+                    <img src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}" class="img-circle elevation-1"
+                        alt="User" style="width: 35px; height: 35px; object-fit: cover;">
+                @else
+                    <img src="{{ asset('adminlte3/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-1" alt="User"
+                        style="width: 35px; height: 35px; object-fit: cover;">
+                @endif
             </div>
             <div class="info" style="overflow: hidden; white-space: nowrap;">
                 <a href="#" class="d-block font-weight-bold text-dark text-truncate"
