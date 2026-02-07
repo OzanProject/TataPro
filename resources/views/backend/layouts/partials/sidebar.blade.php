@@ -69,6 +69,14 @@
                         style="font-size: 0.8rem; letter-spacing: 0.5px;">Surat Menyurat</li>
 
                     <li class="nav-item">
+                        <a href="{{ route('mail-categories.index') }}"
+                            class="nav-link {{ Request::is('correspondence/mail-categories*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-tags text-indigo"></i>
+                            <p>Klasifikasi Surat</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a href="{{ route('incoming.index') }}"
                             class="nav-link {{ Request::is('correspondence/incoming*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-inbox text-success"></i>
