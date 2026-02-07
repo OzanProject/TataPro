@@ -220,7 +220,8 @@ class TeacherDocumentTemplateSeeder extends Seeder
         [
           'description' => $t['description'],
           'file_path' => 'templates/' . $t['file_name'],
-          'variables' => $t['variables']
+          'variables' => $t['variables'],
+          'type' => 'teacher',
         ]
       );
     }

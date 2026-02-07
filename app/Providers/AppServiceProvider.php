@@ -21,6 +21,11 @@ class AppServiceProvider extends ServiceProvider
     {
         // Share Settings Globally
         try {
+            // Super Admin Gate (Implicitly grant all permissions)
+            \Illuminate\Support\Facades\Gate::before(function ($user, $ability) {
+                return $user->hasRole('admin') ? true : null;
+            });
+
             if (\Illuminate\Support\Facades\Schema::hasTable('settings')) {
                 $settings = \App\Models\Setting::all()->pluck('value', 'key');
                 \Illuminate\Support\Facades\View::share('school_name', $settings['school_name'] ?? 'TataPro System');

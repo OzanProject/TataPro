@@ -10,7 +10,8 @@ class DocumentTemplate extends Model
         'name',
         'description',
         'file_path',
-        'variables', 
+        'variables',
+        'type',
     ];
 
     protected $casts = [
